@@ -32,6 +32,46 @@ This script will automatically:
 - Convert the XML into nice JSON dumps (located in the [json/](json/) directory
 
 
+## Data Format
+
+Each one of the `.json` files created are of the format,
+
+```
+[
+    {
+        'to': ['raw@email', ('Name', 'name@email')],
+        'from': ['raw@email', ('Name', 'name@email')],
+        'cc': ['raw@email', ('Name', 'name@email')],
+        'subject': "Subject",
+        'date': "Jan 1 1971",
+        'attachments': ['file1.doc', 'file2.doc'],
+        'body': [
+            (indendation level, "text at this indentation"),
+            (indentation level, "text at this indentation")
+        ]
+    },
+    ...
+]
+```
+
+The indentation level was kept in the body field to aid with quoted text from
+previous emails.
+
+Emails can be listed either as a raw email or as a tuple with the persons
+provided name.  The counts of which fields are used for `Produce-4000.pdf.xml`
+is:
+
+```
+Counter({'attachments': 229,
+         'body': 2256,
+         'cc': 639,
+         'date': 2249,
+         'from': 2255,
+         'replyto': 521,
+         'subject': 2250,
+         'to': 2242})
+```
+
 ## Coverage
 
 This was a quick evening of hacking and as such the code isn't perfect. While we
@@ -41,62 +81,62 @@ with a `From:` field. For the most part this is true.
 
 ```
 XML to JSON: Produce-1600-2541-Redacted.pdf.xml
-    Expected number of emails: 707
-    Extracted 677 emails
+        Expected number of emails: 707
+        Extracted 677 emails
 XML to JSON: Produce-1600-2541-Redacted.xml
-    Expected number of emails: 707
-    Extracted 677 emails
+        Expected number of emails: 707
+        Extracted 677 emails
 XML to JSON: Produce-2000.pdf.xml
-    Expected number of emails: 226
-    Extracted 226 emails
+        Expected number of emails: 226
+        Extracted 226 emails
 XML to JSON: Produce-2000.xml
-    Expected number of emails: 226
-    Extracted 226 emails
+        Expected number of emails: 226
+        Extracted 226 emails
 XML to JSON: Produce-3000.pdf.xml
-    Expected number of emails: 696
-    Extracted 697 emails
+        Expected number of emails: 696
+        Extracted 697 emails
 XML to JSON: Produce-3000.xml
-    Expected number of emails: 696
-    Extracted 697 emails
+        Expected number of emails: 696
+        Extracted 697 emails
 XML to JSON: Produce-4000.pdf.xml
-    Expected number of emails: 2387
-    Extracted 2256 emails
+        Expected number of emails: 2387
+        Extracted 2256 emails
 XML to JSON: Produce-4000.xml
-    Expected number of emails: 2387
-    Extracted 2256 emails
+        Expected number of emails: 2387
+        Extracted 2256 emails
 XML to JSON: Produce-5000.pdf.xml
-    Expected number of emails: 141
-    Extracted 123 emails
+        Expected number of emails: 141
+        Extracted 123 emails
 XML to JSON: Produce-5000.xml
-    Expected number of emails: 141
-    Extracted 123 emails
+        Expected number of emails: 141
+        Extracted 123 emails
 XML to JSON: Produce-6000.pdf.xml
-    Expected number of emails: 176
-    Extracted 137 emails
+        Expected number of emails: 176
+        Extracted 137 emails
 XML to JSON: Produce-6000.xml
-    Expected number of emails: 176
-    Extracted 137 emails
+        Expected number of emails: 176
+        Extracted 137 emails
 XML to JSON: Produce-Box-1-Redacted.pdf.xml
-    Expected number of emails: 574
-    Extracted 579 emails
+        Expected number of emails: 574
+        Extracted 579 emails
 XML to JSON: Produce-Box-1-Redacted.xml
-    Expected number of emails: 574
-    Extracted 579 emails
+        Expected number of emails: 574
+        Extracted 579 emails
 XML to JSON: Produce-Box-5.pdf.xml
-    Expected number of emails: 690
-    Extracted 651 emails
+        Expected number of emails: 690
+        Extracted 651 emails
 XML to JSON: Produce-Box-5-Redacted.pdf.xml
-    Expected number of emails: 434
-    Extracted 434 emails
+        Expected number of emails: 434
+        Extracted 434 emails
 XML to JSON: Produce-Box-5-Redacted.xml
-    Expected number of emails: 690
-    Extracted 651 emails
+        Expected number of emails: 690
+        Extracted 651 emails
 XML to JSON: Produce-Box-5.xml
-    Expected number of emails: 690
-    Extracted 651 emails
+        Expected number of emails: 690
+        Extracted 651 emails
 XML to JSON: Produce-Box-6.xml
-    Expected number of emails: 0
-    Extracted 0 emails
+        Expected number of emails: 0
+        Extracted 0 emails
 ```
 
 ## TODO

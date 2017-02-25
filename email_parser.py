@@ -68,7 +68,7 @@ def get_email(elements):
             if not email['date']:
                 el = next(elements)
                 email['date'] = el.text
-        elif indicator.startswith('attachment:'):
+        elif indicator.startswith('attachments:'):
             email['attachments'] = []
             try:
                 while elements.peek().text[-4] == '.':

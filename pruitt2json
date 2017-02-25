@@ -20,6 +20,7 @@ popd
 pushd xml
 for xml in *.xml; do
     echo "XML to JSON: $xml"
-    echo "Expected number of emails: $( grep -ic 'from:' $xml )"
+    echo -e "\tExpected number of emails: $( grep -ic 'from:' $xml )"
+    echo -ne '\t'
     python3 ../email_parser.py $xml ../json/${xml%.xml}.json
 done
