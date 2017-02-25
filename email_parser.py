@@ -18,7 +18,7 @@ def split_emails_html(email_string):
 
 
 def split_emails_text(email_string):
-    return [e.strip() for e in email_string.split(":")[-1].split(';')]
+    return [e.strip() for e in email_string.split(":", 1)[-1].split(';')]
 
 
 def extract_all_emails(elements, el):
@@ -59,12 +59,12 @@ def get_email(elements):
         elif indicator.startswith('cc:'):
             email['cc'] = extract_all_emails(elements, el)
         elif indicator.startswith('subject:'):
-            email['subject'] = el.text.split(':')[-1].strip()
+            email['subject'] = el.text.split(':', 1)[-1].strip()
             if not email['subject']:
                 el = next(elements)
                 email['subject'] = el.text
         elif indicator.startswith('date:') or indicator.startswith('sent:'):
-            email['date'] = el.text.split(':')[-1].strip()
+            email['date'] = el.text.split(':', 1)[-1].strip()
             if not email['date']:
                 el = next(elements)
                 email['date'] = el.text
