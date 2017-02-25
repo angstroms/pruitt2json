@@ -38,7 +38,7 @@ d3.json("tsne.json", function(data) {
       .orient("left")
       .tickSize(-width);
 
-  var color = d3.scale.category10();
+  var color = d3.scale.category20();
 
   var tip = d3.tip()
       .attr("class", "d3-tip")
@@ -104,7 +104,7 @@ d3.json("tsne.json", function(data) {
       .classed("dot", true)
       //.attr("r", function (d) { return 6 * Math.sqrt(d[rCat] / Math.PI); })
       .attr("transform", transform)
-      //.style("fill", function(d) { return color(d[colorCat]); })
+      .style("fill", function(d) { return color(d.topic); })
       .on("mouseover", tip.show)
       .on("mouseout", tip.hide)
       .on("click", emailinfo);

@@ -1,5 +1,6 @@
-from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from sklearn.manifold import TSNE
+from sklearn.decomposition import LatentDirichletAllocation
 
 import os
 import json
@@ -24,7 +25,7 @@ if __name__ == "__main__":
 
     print("Vectorizing")
     tfidf_vectorizer = TfidfVectorizer(
-        max_df=0.2,
+        max_df=0.3,
         min_df=2,
         ngram_range=(1, 2),
         norm='l2',
@@ -32,22 +33,34 @@ if __name__ == "__main__":
         sublinear_tf=False,
         use_idf=True,
         stop_words='english',
-        max_features=2048,
+        max_features=4096,
     )
-    X = tfidf_vectorizer.fit_transform(emails)
+    X_tfidf = tfidf_vectorizer.fit_transform(emails)
+
+    count_vectorizer = CountVectorizer(
+        max_df=0.3,
+        min_df=2,
+        ngram_range=(1, 2),
+        stop_words='english',
+        max_features=4096,
+    )
+    X_count = tfidf_vectorizer.fit_transform(emails)
 
     print("Doing TSNE")
     tsne = TSNE()
-    coordinates = tsne.fit_transform(X.todense())
+    coordinates = tsne.fit_transform(X_tfidf.todense())
+
+    print("Doing LDA")
+    lda = LatentDirichletAllocation(n_topics=20)
+    topics = lda.fit_transform(X_count).argmax(axis=1)
 
     print("Transforming and saving")
-    for email, coord in zip(data, coordinates):
+    for email, coord, topic in zip(data, coordinates, topics):
         email['tsne_coords'] = coord.tolist()
         email['body'] = clean_email(email)
+        email['topic'] = topic.tolist()
         email['contact_num'] = sum(len(email.get(f, []))
                                    for f in ('to', 'from', 'cc'))
 
-    with open("tsne/tsne.json", "w+") as fd:
+    with open("tsne.json", "w+") as fd:
         json.dump(data, fd)
-    with open("tsne/tsne.small.json", "w+") as fd:
-        json.dump(data[:100], fd)
