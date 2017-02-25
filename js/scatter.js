@@ -88,6 +88,9 @@ d3.json("tsne.json", function(data) {
       .attr("y2", height);
 
   function emailinfo(d, i){
+      $('.dot.active').removeClass('active');
+      d3.select(this).classed("active", true );
+
       $('#emailinfo').html(
         '<b>' + d['date'] + '</b><br>' + 
         '<b>from</b>: ' + d['from'] + '<br>' +

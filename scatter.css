@@ -18,9 +18,13 @@ rect {
 }
 
 .dot {
-  fill: black;
   r: 3px;
   fill-opacity: .25;
+}
+
+.dot.active {
+  r: 5px;
+  fill-opacity: 1;
 }
 
 .d3-tip {
@@ -30,7 +34,6 @@ rect {
   background: rgba(0, 0, 0, 0.8);
   color: #fff;
   border-radius: 2px;
-  width: 50%;
 }
 
 /* Creates a small triangle extender for the tooltip */
