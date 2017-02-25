@@ -1,5 +1,5 @@
-var margin = { top: 50, right: 300, bottom: 50, left: 50 },
-    outerWidth = 1050,
+var margin = { top: 50, right: 50, bottom: 50, left: 50 },
+    outerWidth = $(window).width() * 0.95,
     outerHeight = 500,
     width = outerWidth - margin.left - margin.right,
     height = outerHeight - margin.top - margin.bottom;
@@ -50,7 +50,6 @@ d3.json("tsne.json", function(data) {
   var zoomBeh = d3.behavior.zoom()
       .x(x)
       .y(y)
-      .scaleExtent([0, 500])
       .on("zoom", zoom);
 
   var svg = d3.select("#scatter")
