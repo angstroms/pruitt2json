@@ -3,19 +3,19 @@
 mkdir json
 mkdir xml
 
-#pushd pdf
-#for url in `cat urls.txt`; do
-#    echo "Downloading: $url"
-#    wget --quiet --continue $url;
-#done
-#popd
-#
-#pushd pdf
-#for pdf in *.pdf; do
-#    echo "PDF to XML: $pdf"
-#    pdftohtml $pdf -noframes -i -xml ../xml/${pdf%.pdf}.xml > /dev/null
-#done
-#popd
+pushd pdf
+for url in `cat urls.txt`; do
+    echo "Downloading: $url"
+    wget --quiet --continue $url;
+done
+popd
+
+pushd pdf
+for pdf in *.pdf; do
+    echo "PDF to XML: $pdf"
+    pdftohtml $pdf -noframes -i -xml ../xml/${pdf%.pdf}.xml > /dev/null
+done
+popd
 
 pushd xml
 for xml in *.xml; do
