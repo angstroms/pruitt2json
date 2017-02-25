@@ -87,8 +87,7 @@ d3.json("tsne.json", function(data) {
       .attr("x2", 0)
       .attr("y2", height);
 
-  function tooltips(d, i){
-      tip.show(d, i);
+  function emailinfo(d, i){
       $('#emailinfo').html(
         '<b>' + d['date'] + '</b><br>' + 
         '<b>from</b>: ' + d['from'] + '<br>' +
@@ -106,8 +105,9 @@ d3.json("tsne.json", function(data) {
       //.attr("r", function (d) { return 6 * Math.sqrt(d[rCat] / Math.PI); })
       .attr("transform", transform)
       //.style("fill", function(d) { return color(d[colorCat]); })
-      .on("mouseover", tooltips)
-      .on("mouseout", tip.hide);
+      .on("mouseover", tip.show)
+      .on("mouseout", tip.hide)
+      .on("click", emailinfo);
 
   d3.select("input").on("click", change);
 
