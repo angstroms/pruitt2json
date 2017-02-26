@@ -25,7 +25,6 @@ if __name__ == "__main__":
 
     print("Vectorizing")
     tfidf_vectorizer = TfidfVectorizer(
-        max_df=0.3,
         min_df=2,
         ngram_range=(1, 2),
         norm='l2',
@@ -33,7 +32,7 @@ if __name__ == "__main__":
         sublinear_tf=False,
         use_idf=True,
         stop_words='english',
-        max_features=4096,
+        max_features=5120,
     )
     X_tfidf = tfidf_vectorizer.fit_transform(emails)
 
