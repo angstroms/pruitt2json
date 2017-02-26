@@ -5,6 +5,8 @@ will make the [Pruitt email
 dumps](http://www.exposedbycmd.org/Scott-Pruitt-Missing-Emails) slightly more
 useful (albeit the script isn't perfect)
 
+Full, pre-processed, data in [emails.json](emails.json).
+
 Go check out the [visualization](http://angstroms.github.io/pruitt2json/) to get
 a sense of the data.
 
