@@ -5,6 +5,9 @@ will make the [Pruitt email
 dumps](http://www.exposedbycmd.org/Scott-Pruitt-Missing-Emails) slightly more
 useful (albeit the script isn't perfect)
 
+Go check out the [visualization](http://angstroms.github.io/pruitt2json/) to get
+a sense of the data.
+
 ## Install
 
 In order to run you must have `wget`, `poppler-utils` and `python3` with pip
