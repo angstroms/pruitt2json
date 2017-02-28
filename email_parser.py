@@ -100,6 +100,8 @@ if __name__ == "__main__":
 
     # extract
     emails = list(get_email(elements))
+    for email in emails:
+        email['source_filename'] = filename
     print("Extracted {} emails".format(len(emails)))
     with open(outfile, 'w+') as fd:
         json.dump(emails, fd)

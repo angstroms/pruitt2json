@@ -24,3 +24,7 @@ for xml in *.xml; do
     echo -ne '\t'
     python3 ../email_parser.py $xml ../json/${xml%.xml}.json
 done
+popd
+
+echo "Creating combined JSON"
+python3 ./join_emails.py json/*.json
